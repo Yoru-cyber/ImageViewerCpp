@@ -1,10 +1,19 @@
+#include <QApplication>
+#include <QDebug>
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QString>
 #include <filesystem>
 #include <functional>
 #include <iostream>
 #include <ostream>
 #include <string>
 #include <vector>
-
+namespace WindowConstants {
+constexpr int BASE_WIDTH = 800;
+constexpr int BASE_HEIGHT = 600;
+} // namespace WindowConstants
 /**
  * @brief Reads a directory and filters files based on a condition.
  *
@@ -37,7 +46,7 @@ void read_directory(
   }
 }
 
-int main() {
+int main(int argc, char *argv[]) {
   std::string directory_path = std::filesystem::current_path();
   std::vector<std::string> file_names;
 
@@ -52,9 +61,19 @@ int main() {
 
   read_directory(directory_path, file_names, condition);
 
+  QApplication app(argc, argv);
+  app.setApplicationName("ImageViewerCpp");
+  qDebug() << app.applicationPid();
+  QWidget window;
+  QHBoxLayout layout;
   for (const auto &file_name : file_names) {
-    std::cout << file_name << std::endl;
+    QLabel *testText = new QLabel(QString::fromStdString(file_name));
+    layout.addWidget(testText);
   }
+  window.setWindowTitle("THIS IS A TEST TITLE");
+  window.setLayout(&layout);
+  window.resize(WindowConstants::BASE_WIDTH, WindowConstants::BASE_HEIGHT);
+  window.show();
 
-  return 0;
+  return app.exec();
 }

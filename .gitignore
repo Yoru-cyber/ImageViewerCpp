@@ -1,32 +1,66 @@
-# Prerequisites
-*.d
-
 # Compiled Object files
-*.slo
-*.lo
 *.o
 *.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
+*.exe
+*.dll
 *.so
 *.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
 *.a
 *.lib
-
-# Executables
-*.exe
-*.out
 *.app
+
+# CMake build files
+build/
+CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+
+# Qt build files
+*.pro.user
+*.user
+*.ui.autosave
+
+# VS Code files
+.vscode/
+
+# Other IDE files
+.idea/
+*.cbp
+*.layout
+*.suo
+*.ntvs*
+*.opensdf
+*.sdf
+*.sln
+*.vcxproj
+*.vcxproj.filters
+
+# Temporary files
+*~
+\#*
+*.swp
+*.bak
+*.log
+*.tmp
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Doxygen generated files
+html/
+latex/
+rtf/
+man/
+xml/
+
+# Executables (if you don't want to track them)
+*.out
+*.bin
+
+# Coverage files
+*.gcda
+*.gcno
+
+# Clang cache 
+.cache
