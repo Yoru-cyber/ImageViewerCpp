@@ -1,0 +1,1 @@
+/usr/bin/clang++ -Wl,--dependency-file=CMakeFiles/directory.dir/link.d CMakeFiles/directory.dir/directory.cpp.o -o directory

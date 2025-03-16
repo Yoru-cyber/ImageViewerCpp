@@ -1,0 +1,3 @@
+/home/carlos/Proyectos/ImageViewerCpp/build/CMakeFiles/directory.dir
+/home/carlos/Proyectos/ImageViewerCpp/build/CMakeFiles/edit_cache.dir
+/home/carlos/Proyectos/ImageViewerCpp/build/CMakeFiles/rebuild_cache.dir
