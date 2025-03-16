@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.10)
 project(ImageViewerCpp_VERSION_0.0.1)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
+set(CXXFLAGS  "-Werror -Wextra -Wpedantic -Wmissing-include-dirs -Wall -std=c++17")
+set(CMAKE_CXX_FLAGS "${CXXFLAGS}")
 find_program(CLANG_COMPILER clang++)
 
 if(CLANG_COMPILER)

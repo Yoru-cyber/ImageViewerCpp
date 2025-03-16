@@ -8,6 +8,8 @@
 #include <functional>
 #include <iostream>
 #include <ostream>
+#include <qcontainerfwd.h>
+#include <qpixmap.h>
 #include <string>
 #include <vector>
 namespace WindowConstants {
@@ -70,6 +72,20 @@ int main(int argc, char *argv[]) {
     QLabel *testText = new QLabel(QString::fromStdString(file_name));
     layout.addWidget(testText);
   }
+  QLabel imageLabel = QLabel();
+  // Check if entries exist and if so, pick the first image.
+  if (!file_names.empty()) {
+    QPixmap image(QString::fromStdString(file_names[0]));
+    if (!image.isNull()) {
+      imageLabel.setPixmap(image.scaled(imageLabel.size(), Qt::KeepAspectRatio,
+                                        Qt::SmoothTransformation));
+    } else {
+      imageLabel.setText("Image not found");
+    }
+  } else {
+    imageLabel.setText("No image");
+  }
+  layout.addWidget(&imageLabel);
   window.setWindowTitle("THIS IS A TEST TITLE");
   window.setLayout(&layout);
   window.resize(WindowConstants::BASE_WIDTH, WindowConstants::BASE_HEIGHT);
