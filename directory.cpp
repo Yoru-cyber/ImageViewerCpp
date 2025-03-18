@@ -3,11 +3,14 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QPushButton>
+#include <QScrollArea>
 #include <QString>
+#include <QVBoxLayout>
 #include <filesystem>
 #include <functional>
 #include <iostream>
 #include <ostream>
+#include <qboxlayout.h>
 #include <qcontainerfwd.h>
 #include <qpixmap.h>
 #include <string>
@@ -67,10 +70,16 @@ int main(int argc, char *argv[]) {
   app.setApplicationName("ImageViewerCpp");
   qDebug() << app.applicationPid();
   QWidget window;
-  QHBoxLayout layout;
+  QHBoxLayout mainLayout;
+  QScrollArea *scrollArea = new QScrollArea();
+  QWidget *contentWidget = new QWidget();
+  // I think this setups contentWidget as its parent
+  QVBoxLayout *layout = new QVBoxLayout(contentWidget);
+  // Add each entry of directory
   for (const auto &file_name : file_names) {
     QLabel *testText = new QLabel(QString::fromStdString(file_name));
-    layout.addWidget(testText);
+    testText->setWordWrap(true);
+    layout->addWidget(testText);
   }
   QLabel imageLabel = QLabel();
   // Check if entries exist and if so, pick the first image.
@@ -85,9 +94,12 @@ int main(int argc, char *argv[]) {
   } else {
     imageLabel.setText("No image");
   }
-  layout.addWidget(&imageLabel);
+  scrollArea->setWidget(contentWidget);
+  scrollArea->setWidgetResizable(true);
+  mainLayout.addWidget(scrollArea);
+  mainLayout.addWidget(&imageLabel);
+  window.setLayout(&mainLayout);
   window.setWindowTitle("THIS IS A TEST TITLE");
-  window.setLayout(&layout);
   window.resize(WindowConstants::BASE_WIDTH, WindowConstants::BASE_HEIGHT);
   window.show();
 
